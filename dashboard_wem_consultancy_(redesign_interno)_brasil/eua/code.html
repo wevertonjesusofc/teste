@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard WEM Consultancy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2563EB", // Vibrant Blue
+                        "primary-hover": "#1D4ED8",
+                        "secondary": "#3B82F6",
+                        "accent-green": "#10B981",
+                        "accent-yellow": "#F59E0B",
+                        "accent-purple": "#8B5CF6",
+                        "background-light": "#F3F4F6", // Light grey for light mode fallback
+                        "background-dark": "#0A0A0C", // Deep Black
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#161618", // Dark Gray
+                        "surface-hover": "#222226", // Slightly lighter dark gray
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem", // 12px
+                    },
+                    boxShadow: {
+                        'glow': '0 0 15px rgba(37, 99, 235, 0.2)',
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #161618; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4B5563; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 min-h-screen flex flex-col font-display antialiased transition-colors duration-300">
+<div class="fixed inset-0 z-0 pointer-events-none opacity-20 dark:opacity-10">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary rounded-full blur-[150px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-purple rounded-full blur-[150px]"></div>
+<svg class="absolute inset-0 w-full h-full opacity-10" height="100%" width="100%">
+<pattern height="40" id="grid" patternUnits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="0.5"></path>
+</pattern>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<header class="relative z-20 bg-surface-light dark:bg-surface-dark border-b border-gray-200 dark:border-gray-800 shadow-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16 items-center">
+<div class="flex items-center gap-3">
+<div class="h-9 w-9 bg-gradient-to-br from-primary to-blue-800 rounded-lg flex items-center justify-center text-white font-bold shadow-lg">
+<span class="material-icons-round text-xl">insights</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-lg tracking-tight leading-none text-gray-900 dark:text-white">CONSULTORIA WEM</span>
+<span class="text-xs text-primary font-medium">Sistema de Consultoria</span>
+</div>
+</div>
+<nav class="hidden md:flex space-x-1">
+<a class="px-3 py-2 rounded-md text-sm font-medium text-primary bg-primary/10 transition-colors" href="#">Painel</a>
+<a class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">Investimentos</a>
+<a class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">Transações</a>
+<a class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">Relatórios</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors" title="Change Language">
+<span class="material-icons-outlined text-xl">language</span>
+</button>
+<div class="flex items-center gap-3 border-l border-gray-200 dark:border-gray-700 pl-4">
+<div class="h-8 w-8 rounded-full bg-orange-600 flex items-center justify-center text-white text-sm font-bold shadow-sm">
+                            W
+                        </div>
+<div class="hidden lg:flex flex-col text-right">
+<span class="text-xs font-semibold text-gray-900 dark:text-white">Jesus de Weverton</span>
+<span class="text-[10px] text-gray-500 dark:text-gray-400">wevertonjesusofc@gmail.com</span>
+</div>
+<button class="text-gray-500 hover:text-red-500 transition-colors ml-1">
+<span class="material-icons-outlined text-xl rotate-180">logout</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="relative z-10 flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+<div class="bg-surface-light dark:bg-surface-dark p-1 rounded-xl inline-flex mb-8 shadow-lg border border-gray-200 dark:border-gray-800 w-full md:w-auto overflow-x-auto">
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-lg text-sm font-medium bg-primary text-white shadow-md transition-all whitespace-nowrap">
+<span class="block font-bold">Casos</span>
+<span class="block text-[10px] opacity-80 font-normal">Gerencie seus casos</span>
+</button>
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-lg text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all text-center whitespace-nowrap">
+<span class="block font-semibold">Saques</span>
+<span class="block text-[10px] opacity-70 font-normal">Solicite retiradas</span>
+</button>
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-lg text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all text-center whitespace-nowrap">
+<span class="block font-semibold">Rendimentos</span>
+<span class="block text-[10px] opacity-70 font-normal">Histórico de PLR</span>
+</button>
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-lg text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all text-center whitespace-nowrap">
+<span class="block font-semibold">Histórico</span>
+<span class="block text-[10px] opacity-70 font-normal">Detalhes</span>
+</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 space-y-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-300 group relative overflow-hidden">
+<div class="absolute right-0 top-0 h-24 w-24 bg-blue-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="relative z-10 flex justify-between items-start">
+<div>
+<p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Saldo Principal</p>
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white mt-1">R$ 500,00</h3>
+</div>
+<div class="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-primary">
+<span class="material-icons-outlined">account_balance_wallet</span>
+</div>
+</div>
+<div class="mt-4 flex items-center text-xs text-accent-green font-medium">
+<span class="material-icons-round text-sm mr-1">trending_up</span>
+<span>+2.5% este mês</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 hover:border-accent-yellow/50 dark:hover:border-accent-yellow/50 transition-all duration-300 group relative overflow-hidden">
+<div class="absolute right-0 top-0 h-24 w-24 bg-yellow-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="relative z-10 flex justify-between items-start">
+<div>
+<p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Rendimentos</p>
+<h3 class="text-2xl font-bold text-accent-yellow mt-1">R$ 253,25</h3>
+<p class="text-[10px] text-gray-400 mt-1">Saque às sextas-feiras</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-accent-yellow">
+<span class="material-icons-outlined">savings</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 hover:border-accent-green/50 dark:hover:border-accent-green/50 transition-all duration-300 group relative overflow-hidden">
+<div class="absolute right-0 top-0 h-24 w-24 bg-green-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="relative z-10 flex justify-between items-start">
+<div>
+<p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Totalmente Investido</p>
+<h3 class="text-2xl font-bold text-accent-green mt-1">R$ 500,00</h3>
+</div>
+<div class="h-10 w-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-accent-green">
+<span class="material-icons-outlined">trending_up</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 hover:border-accent-purple/50 dark:hover:border-accent-purple/50 transition-all duration-300 group relative overflow-hidden">
+<div class="absolute right-0 top-0 h-24 w-24 bg-purple-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="relative z-10 flex justify-between items-start">
+<div>
+<p class="text-sm text-gray-500 dark:text-gray-400 font-medium">PLR Diário</p>
+<h3 class="text-2xl font-bold text-accent-purple mt-1">R$ 12,45</h3>
+<p class="text-[10px] text-gray-400 mt-1">Participação Lucros</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-accent-purple">
+<span class="material-icons-outlined">pie_chart</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-md border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col h-auto">
+<div class="p-6 border-b border-gray-200 dark:border-gray-700 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-blue-500/10 flex items-center justify-center text-primary">
+<span class="material-icons-round">receipt_long</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-gray-900 dark:text-white">Histórico de Movimentações</h2>
+<p class="text-xs text-gray-500 dark:text-gray-400">Acompanhe seus rendimentos e aplicações</p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<button class="p-2.5 rounded-lg bg-gray-100 dark:bg-surface-hover text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" title="Exportar">
+<span class="material-icons-outlined text-sm">download</span>
+</button>
+<button class="px-5 py-2.5 rounded-lg bg-secondary/10 hover:bg-secondary/20 text-secondary border border-secondary/30 flex items-center gap-2 transition-colors text-sm font-semibold">
+<span class="material-icons-outlined text-base">receipt</span>
+                                Comprovante
+                            </button>
+<button class="px-5 py-2.5 rounded-lg bg-primary hover:bg-primary-hover text-white shadow-lg shadow-primary/30 flex items-center gap-2 transition-colors text-sm font-bold">
+<span class="material-icons-outlined text-base">add_circle</span>
+                                Nova Aplicação
+                            </button>
+</div>
+</div>
+<div class="p-6 pb-2">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Evolução do Saldo</h3>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="text-2xl font-bold text-gray-900 dark:text-white">R$ 500,00</span>
+<span class="text-xs font-medium text-accent-green flex items-center bg-green-500/10 px-1.5 py-0.5 rounded">
+<span class="material-icons-round text-[10px] mr-0.5">arrow_upward</span> 4.2%
+                                    </span>
+</div>
+</div>
+<div class="flex bg-gray-100 dark:bg-surface-hover p-1 rounded-lg">
+<button class="px-3 py-1 rounded-md text-xs font-medium bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm">Diário</button>
+<button class="px-3 py-1 rounded-md text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Semanal</button>
+<button class="px-3 py-1 rounded-md text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Mensal</button>
+<button class="px-3 py-1 rounded-md text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Anual</button>
+</div>
+</div>
+<div class="h-[250px] w-full relative">
+<canvas id="balanceChart"></canvas>
+</div>
+</div>
+<div class="px-6 py-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-surface-hover/30">
+<div class="flex flex-col md:flex-row gap-4 justify-between">
+<div class="relative flex-grow max-w-md">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-gray-400">search</span>
+</span>
+<input class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg leading-5 bg-white dark:bg-surface-dark text-gray-900 dark:text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition duration-150 ease-in-out" placeholder="Buscar por descrição, valor..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 md:pb-0">
+<button class="px-3 py-2 bg-white dark:bg-surface-dark border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-700 dark:text-gray-300 flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-surface-hover transition-colors whitespace-nowrap">
+<span class="material-icons-outlined text-xs">filter_list</span>
+                                    Tipo
+                                </button>
+<button class="px-3 py-2 bg-white dark:bg-surface-dark border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-700 dark:text-gray-300 flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-surface-hover transition-colors whitespace-nowrap">
+<span class="material-icons-outlined text-xs">calendar_today</span>
+                                    Período
+                                </button>
+<button class="px-3 py-2 bg-white dark:bg-surface-dark border border-gray-300 dark:border-gray-700 rounded-lg text-sm text-gray-700 dark:text-gray-300 flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-surface-hover transition-colors whitespace-nowrap">
+<span class="material-icons-outlined text-xs">attach_money</span>
+                                    Valor
+                                </button>
+</div>
+</div>
+</div>
+<div class="flex-grow overflow-x-auto">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
+<thead class="bg-gray-50 dark:bg-surface-hover">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">Data</th>
+<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">Tipo</th>
+<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">Descrição</th>
+<th class="px-6 py-3 text-right text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">Valor</th>
+<th class="px-6 py-3 text-center text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">Status</th>
+<th class="relative px-6 py-3" scope="col"><span class="sr-only">Ações</span></th>
+</tr>
+</thead>
+<tbody class="bg-surface-light dark:bg-surface-dark divide-y divide-gray-200 dark:divide-gray-800">
+<tr class="hover:bg-gray-50 dark:hover:bg-surface-hover/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">12 Out, 2023</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                                            Investimento
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200 font-medium">Aplicação Cripto LP</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-gray-900 dark:text-white">R$ 500,00</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex items-center justify-center">
+<span class="h-2.5 w-2.5 rounded-full bg-accent-green mr-2"></span>
+<span class="text-xs font-medium text-accent-green">Concluído</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-gray-400 hover:text-primary transition-colors"><span class="material-icons-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-surface-hover/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">11 Out, 2023</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                                            Rendimento
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200 font-medium">PLR Diário - Cota A</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-accent-green">+ R$ 12,45</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex items-center justify-center">
+<span class="h-2.5 w-2.5 rounded-full bg-accent-green mr-2"></span>
+<span class="text-xs font-medium text-accent-green">Concluído</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-gray-400 hover:text-primary transition-colors"><span class="material-icons-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-surface-hover/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">10 Out, 2023</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                                            Depósito
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200 font-medium">Depósito via Pix</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-gray-900 dark:text-white">R$ 1.500,00</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex items-center justify-center">
+<span class="h-2.5 w-2.5 rounded-full bg-accent-green mr-2"></span>
+<span class="text-xs font-medium text-accent-green">Concluído</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-gray-400 hover:text-primary transition-colors"><span class="material-icons-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-surface-hover/50 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">09 Out, 2023</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300">
+                                            Saque
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200 font-medium">Solicitação de Retirada</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-gray-500 dark:text-gray-400">- R$ 200,00</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex items-center justify-center">
+<span class="h-2.5 w-2.5 rounded-full bg-accent-yellow mr-2 animate-pulse"></span>
+<span class="text-xs font-medium text-accent-yellow">Pendente</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-gray-400 hover:text-primary transition-colors"><span class="material-icons-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-surface-hover/50 transition-colors opacity-60">
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">05 Out, 2023</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">
+                                            Falha
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200 font-medium">Tentativa de Depósito</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-gray-400">R$ 50,00</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex items-center justify-center">
+<span class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></span>
+<span class="text-xs font-medium text-red-500">Cancelado</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-gray-400 hover:text-primary transition-colors"><span class="material-icons-outlined text-lg">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-gray-200 dark:border-gray-800 flex justify-center bg-gray-50 dark:bg-surface-hover/20">
+<button class="text-primary hover:text-primary-hover font-bold text-sm flex items-center gap-2 px-6 py-2 rounded-lg hover:bg-primary/10 transition-colors">
+                            Ver Histórico Detalhado
+                            <span class="material-icons-round text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-md border border-gray-200 dark:border-gray-800 h-full flex flex-col">
+<div class="relative bg-gradient-to-br from-primary/20 to-surface-dark rounded-t-2xl p-6 pb-12 border-b border-gray-200 dark:border-gray-800">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white shadow-lg">
+<span class="material-icons-round">person</span>
+</div>
+<div>
+<h3 class="font-bold text-gray-900 dark:text-white">Informações do Usuário</h3>
+<p class="text-xs text-gray-600 dark:text-gray-300">Dados da sua conta</p>
+</div>
+</div>
+</div>
+<div class="px-6 relative flex flex-col items-center -mt-10">
+<div class="relative">
+<div class="h-24 w-24 rounded-full border-4 border-surface-light dark:border-surface-dark bg-orange-600 flex items-center justify-center text-3xl font-bold text-white shadow-lg">
+                                W
+                            </div>
+<button class="absolute bottom-0 right-0 p-1.5 bg-primary rounded-full text-white border-4 border-surface-light dark:border-surface-dark hover:bg-primary-hover transition-colors">
+<span class="material-icons-round text-sm block">camera_alt</span>
+</button>
+</div>
+<div class="text-center mt-3 mb-6">
+<h2 class="text-lg font-bold text-gray-900 dark:text-white">Jesus de Weverton</h2>
+<p class="text-sm text-gray-500 dark:text-gray-400">wevertonjesusofc@gmail.com</p>
+</div>
+<div class="w-full bg-gray-100 dark:bg-surface-hover/50 rounded-xl p-5 border border-gray-200 dark:border-gray-700/50 mb-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-20 h-20 bg-accent-purple/20 blur-2xl rounded-full pointer-events-none"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<p class="text-xs font-semibold text-accent-yellow mb-1">ID Único</p>
+<p class="text-xl font-mono font-bold text-gray-900 dark:text-white tracking-wider">DY7A0CKZ</p>
+</div>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-icons-outlined">content_copy</span>
+</button>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-gradient-to-r from-accent-purple to-purple-700 text-white font-medium text-sm shadow-lg shadow-purple-900/20 mb-3 flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span class="material-icons-round text-sm">stars</span>
+                                Ativar ID de Indicação
+                            </button>
+<p class="text-[10px] text-center text-gray-500 dark:text-gray-400 mb-4 px-2">
+                                Vincule-se a quem você indicou e participe do programa de bônus exclusivo!
+                            </p>
+<button class="w-full py-3 rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-sm shadow-lg shadow-orange-900/20 mb-2 flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span class="material-icons-round text-sm">share</span>
+                                Compartilhar Código
+                            </button>
+<p class="text-[10px] text-center text-accent-yellow font-medium mb-4">
+                                Ganhe 5% de bônus por cada pessoa indicada!
+                            </p>
+<div class="h-px w-full bg-gray-200 dark:bg-gray-700 mb-4"></div>
+<div class="grid grid-cols-3 gap-2 text-center">
+<div class="bg-gray-50 dark:bg-surface-dark/50 p-2 rounded-lg border border-gray-200 dark:border-gray-700">
+<span class="block text-lg font-bold text-accent-yellow">0</span>
+<span class="block text-[9px] text-gray-500 dark:text-gray-400 leading-tight">Total Indicações</span>
+</div>
+<div class="bg-gray-50 dark:bg-surface-dark/50 p-2 rounded-lg border border-gray-200 dark:border-gray-700">
+<span class="block text-lg font-bold text-accent-green">0</span>
+<span class="block text-[9px] text-gray-500 dark:text-gray-400 leading-tight">Bônus Aplicados</span>
+</div>
+<div class="bg-gray-50 dark:bg-surface-dark/50 p-2 rounded-lg border border-gray-200 dark:border-gray-700">
+<span class="block text-lg font-bold text-orange-400">0</span>
+<span class="block text-[9px] text-gray-500 dark:text-gray-400 leading-tight">Pendentes</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-black/20 rounded-b-2xl">
+<div class="flex items-center justify-between text-xs text-gray-500">
+<span>Status da conta</span>
+<span class="flex items-center text-accent-green font-medium gap-1">
+<span class="h-2 w-2 rounded-full bg-accent-green"></span> Ativo
+                            </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Init Chart for more interactive look
+        const ctx = document.getElementById('balanceChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+        gradient.addColorStop(0, 'rgba(37, 99, 235, 0.4)'); 
+        gradient.addColorStop(1, 'rgba(37, 99, 235, 0)');   
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['01 Out', '03 Out', '05 Out', '07 Out', '09 Out', '11 Out', '12 Out'],
+                datasets: [{
+                    label: 'Saldo Total',
+                    data: [120, 190, 150, 300, 300, 487, 500],
+                    borderColor: '#2563EB',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: '#2563EB',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#161618',
+                        titleColor: '#fff',
+                        bodyColor: '#ccc',
+                        borderColor: '#333',
+                        borderWidth: 1,
+                        padding: 10,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { 
+                        grid: {
+                            color: 'rgba(107, 114, 128, 0.1)',
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            color: '#9CA3AF',
+                            font: { size: 10 }
+                        }
+                    },
+                    y: { 
+                        grid: {
+                            color: 'rgba(107, 114, 128, 0.1)',
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            color: '#9CA3AF',
+                            font: { size: 10 },
+                            callback: function(value, index, values) {
+                                return 'R$ ' + value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body></html>
