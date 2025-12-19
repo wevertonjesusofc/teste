@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Configurações do Usuário - InvestPro</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622", // Very dark blue/gray
+                        "surface-dark": "#111722", // Slightly lighter for panels
+                        "card-dark": "#1A2332", // Card background
+                        "border-dark": "#232f48", // Borders
+                        "text-secondary": "#92a4c9",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111722; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232f48; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #324467; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white overflow-hidden">
+<div class="flex h-screen w-full flex-row overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex w-72 flex-col border-r border-border-dark bg-surface-dark flex-shrink-0 h-full overflow-y-auto">
+<div class="flex flex-col h-full justify-between p-4">
+<div class="flex flex-col gap-6">
+<!-- Brand -->
+<div class="flex items-center gap-3 px-2">
+<div class="relative flex items-center justify-center size-10 rounded-xl bg-gradient-to-br from-primary to-blue-600 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white" style="font-size: 24px;">trending_up</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-lg font-bold leading-none tracking-tight">InvestPro</h1>
+<p class="text-text-secondary text-xs font-medium mt-1">Plataforma de Investimentos</p>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-2">
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-[#232f48] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:text-white transition-colors">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-[#232f48] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:text-white transition-colors">account_balance_wallet</span>
+<p class="text-sm font-medium">Carteira</p>
+</a>
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-[#232f48] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:text-white transition-colors">show_chart</span>
+<p class="text-sm font-medium">Mercado</p>
+</a>
+<!-- Separator -->
+<div class="h-px bg-border-dark my-2 mx-3"></div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 border border-primary/20 text-white shadow-sm" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">settings</span>
+<p class="text-sm font-bold text-primary">Configurações</p>
+</a>
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-[#232f48] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined group-hover:text-white transition-colors">help</span>
+<p class="text-sm font-medium">Suporte</p>
+</a>
+</nav>
+</div>
+<!-- User Profile / Logout -->
+<div class="mt-auto pt-6">
+<div class="flex items-center justify-between p-3 rounded-xl bg-[#1A2332] border border-[#232f48]">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-[#232f48]" data-alt="User profile picture showing a professional man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuACQr3cquQLPiHj6-WAKtJ4ChpuoeYJOyGP2fRGxAorTw-UVdtYLz-WB8PLrVjXJi7O4ei9j7HEBwqNDfeJ6O0cAMy6slK5QI_DMMunsd8b8DOMwzD-TXBZRH9upGRWz4RNYWEIYOFhrvBb4Zo73qzhr-MkXZHXSk8LH_6YM2l5GeGe8Su1Ov3ptk8S7uWrs7rk_ImlEkDy2VH0IMghTswyTxJt1SP_w95L1Vs8wyj6neksoOalCu2INtTObkca-8gHjgSeoez2oDc");'></div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-bold">Carlos Silva</p>
+<p class="text-text-secondary text-xs">Premium User</p>
+</div>
+</div>
+<button class="text-text-secondary hover:text-red-400 transition-colors p-1" title="Sair">
+<span class="material-symbols-outlined" style="font-size: 20px;">logout</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex flex-col flex-1 h-full min-w-0 bg-background-light dark:bg-background-dark relative">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between border-b border-border-dark bg-surface-dark px-6 py-3 shrink-0 z-20">
+<!-- Mobile Menu Button (Visible only on small screens) -->
+<button class="lg:hidden p-2 text-white mr-4">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Search Bar -->
+<div class="hidden md:flex flex-1 max-w-md">
+<label class="flex w-full items-center gap-2 rounded-lg bg-[#232f48] px-3 py-2 border border-transparent focus-within:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-text-secondary">search</span>
+<input class="bg-transparent border-none text-white placeholder-text-secondary text-sm w-full focus:ring-0 p-0" placeholder="Buscar ativos, ordens ou configurações..." type="text"/>
+</label>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-4 ml-auto">
+<!-- Language Toggle -->
+<div class="flex items-center bg-[#232f48] rounded-lg p-1 border border-[#324467]">
+<button class="px-2 py-1 rounded-md text-xs font-bold bg-primary text-white shadow-sm">PT</button>
+<button class="px-2 py-1 rounded-md text-xs font-medium text-text-secondary hover:text-white transition-colors">EN</button>
+</div>
+<div class="h-6 w-px bg-[#324467]"></div>
+<button class="relative p-2 text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-[#232f48]">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full ring-2 ring-[#111722]"></span>
+</button>
+<button class="p-2 text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-[#232f48]">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Page Content -->
+<main class="flex-1 overflow-y-auto p-4 md:p-8 lg:px-12 scroll-smooth">
+<div class="max-w-6xl mx-auto flex flex-col gap-6 pb-20">
+<!-- Breadcrumbs & Heading -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2 text-sm">
+<a class="text-text-secondary hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-text-secondary">/</span>
+<span class="text-white font-medium">Configurações</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold text-white tracking-tight">Configurações do Usuário</h2>
+<p class="text-text-secondary mt-1">Gerencie seus dados pessoais, segurança e preferências da plataforma.</p>
+</div>
+<button class="hidden md:flex items-center gap-2 px-4 py-2 bg-red-500/10 text-red-400 border border-red-500/20 rounded-lg text-sm font-bold hover:bg-red-500/20 transition-colors">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+                                Sair da Conta
+                            </button>
+</div>
+</div>
+<!-- Tabs Navigation -->
+<div class="border-b border-[#324467] w-full mt-2 sticky top-0 bg-background-light dark:bg-background-dark z-10 pt-2">
+<div class="flex gap-6 overflow-x-auto pb-px no-scrollbar">
+<button class="flex items-center gap-2 pb-3 border-b-2 border-primary px-1">
+<span class="material-symbols-outlined text-primary text-[20px]">person</span>
+<span class="text-white font-bold text-sm whitespace-nowrap">Dados Pessoais</span>
+</button>
+<button class="flex items-center gap-2 pb-3 border-b-2 border-transparent px-1 group hover:border-[#324467]">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-white text-[20px] transition-colors">lock</span>
+<span class="text-text-secondary group-hover:text-white font-medium text-sm whitespace-nowrap transition-colors">Segurança</span>
+</button>
+<button class="flex items-center gap-2 pb-3 border-b-2 border-transparent px-1 group hover:border-[#324467]">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-white text-[20px] transition-colors">account_balance</span>
+<span class="text-text-secondary group-hover:text-white font-medium text-sm whitespace-nowrap transition-colors">Dados Bancários</span>
+</button>
+<button class="flex items-center gap-2 pb-3 border-b-2 border-transparent px-1 group hover:border-[#324467]">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-white text-[20px] transition-colors">notifications</span>
+<span class="text-text-secondary group-hover:text-white font-medium text-sm whitespace-nowrap transition-colors">Notificações</span>
+</button>
+</div>
+</div>
+<!-- Main Form Area -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-2">
+<!-- Left Column (Profile & Personal Info) -->
+<div class="xl:col-span-2 flex flex-col gap-6">
+<!-- Profile Card -->
+<div class="bg-card-dark rounded-2xl border border-border-dark p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">badge</span>
+                                        Informações Básicas
+                                    </h3>
+<span class="px-2 py-1 bg-green-500/10 text-green-400 text-xs font-bold rounded border border-green-500/20">Verificado</span>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<!-- Photo Upload -->
+<div class="flex flex-col items-center gap-3 min-w-[140px]">
+<div class="relative group cursor-pointer">
+<div class="size-32 rounded-full bg-cover bg-center ring-4 ring-[#232f48] group-hover:ring-primary transition-all" data-alt="Close up portrait of a user" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZANs296stxomWGLBGS0TlTvfHzjsuRVbHB_nSrUn58FbF71QRhqtm9E6k93RgztoLHuOuMI03-Hkz8EJJWXXiBcm-mCKGxMn1VPnkDhYmyo46Ht45WA9gFMVtufRLeft3Hj_Va1RtWEU2wRFu2o3a3zSbb8Yw3KexIxLB3qL3_-fakpekqa_wPvke0t4Xc21Y-Ok_U8U9gCFIUtSWmRkCYAnZzgOfj8d03RNjwj1F4utturLXdhIR-1nlxbK5yPUFOvDUXr1rQIc");'></div>
+<div class="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white">photo_camera</span>
+</div>
+</div>
+<button class="text-primary text-sm font-bold hover:underline">Alterar Foto</button>
+</div>
+<!-- Fields -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Nome Completo</label>
+<div class="flex items-center gap-2 px-3 py-2.5 bg-[#232f48] rounded-lg border border-transparent focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary text-[20px]">person</span>
+<input class="bg-transparent border-none text-white text-sm w-full p-0 focus:ring-0 placeholder-gray-500" type="text" value="Carlos Eduardo Silva"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-text-secondary uppercase tracking-wider">CPF</label>
+<div class="flex items-center gap-2 px-3 py-2.5 bg-[#232f48] rounded-lg border border-transparent focus-within:border-primary transition-colors opacity-70 cursor-not-allowed" title="Entre em contato com o suporte para alterar">
+<span class="material-symbols-outlined text-text-secondary text-[20px]">id_card</span>
+<input class="bg-transparent border-none text-white text-sm w-full p-0 focus:ring-0 disabled:text-gray-400" disabled="" type="text" value="123.456.789-00"/>
+<span class="material-symbols-outlined text-green-500 text-[18px]">verified</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Email</label>
+<div class="flex items-center gap-2 px-3 py-2.5 bg-[#232f48] rounded-lg border border-transparent focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary text-[20px]">mail</span>
+<input class="bg-transparent border-none text-white text-sm w-full p-0 focus:ring-0" type="email" value="carlos.silva@email.com"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Telefone</label>
+<div class="flex items-center gap-2 px-3 py-2.5 bg-[#232f48] rounded-lg border border-transparent focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary text-[20px]">call</span>
+<input class="bg-transparent border-none text-white text-sm w-full p-0 focus:ring-0" type="tel" value="(11) 98765-4321"/>
+</div>
+</div>
+<!-- Language Select inside Profile -->
+<div class="flex flex-col gap-1.5 md:col-span-2">
+<label class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Idioma da Plataforma</label>
+<div class="relative">
+<div class="flex items-center gap-2 px-3 py-2.5 bg-[#232f48] rounded-lg border border-transparent focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary text-[20px]">language</span>
+<select class="bg-transparent border-none text-white text-sm w-full p-0 focus:ring-0 appearance-none cursor-pointer">
+<option selected="" value="pt">Português (Brasil)</option>
+<option value="en">English (US)</option>
+<option value="es">Español</option>
+</select>
+<span class="material-symbols-outlined text-text-secondary absolute right-3 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bank Data Card -->
+<div class="bg-card-dark rounded-2xl border border-border-dark p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_balance</span>
+                                        Dados Bancários
+                                    </h3>
+<button class="text-xs text-primary font-bold hover:underline">Adicionar Nova Conta</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="md:col-span-3 p-4 rounded-xl bg-[#232f48]/50 border border-primary/30 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-10 bg-white rounded-full flex items-center justify-center p-1" data-alt="Bank logo placeholder">
+<span class="material-symbols-outlined text-slate-800">account_balance</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">Banco Inter</p>
+<p class="text-text-secondary text-xs">Ag: 0001 • Conta: 12345-6</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="hidden sm:inline-block px-2 py-1 bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wide rounded">Principal</span>
+<button class="text-text-secondary hover:text-white"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-3">
+<label class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Chave PIX</label>
+<div class="flex items-center gap-2 px-3 py-2.5 bg-[#232f48] rounded-lg border border-transparent focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary text-[20px]">photos</span>
+<input class="bg-transparent border-none text-white text-sm w-full p-0 focus:ring-0" type="text" value="carlos.silva@email.com"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Security & Notifications) -->
+<div class="flex flex-col gap-6">
+<!-- Security Card -->
+<div class="bg-card-dark rounded-2xl border border-border-dark p-6 shadow-sm flex flex-col gap-6">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">lock</span>
+                                    Segurança
+                                </h3>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Senha Atual</label>
+<div class="flex items-center gap-2 px-3 py-2.5 bg-[#232f48] rounded-lg border border-transparent focus-within:border-primary transition-colors">
+<input class="bg-transparent border-none text-white text-sm w-full p-0 focus:ring-0" type="password" value="password123"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Nova Senha</label>
+<div class="flex items-center gap-2 px-3 py-2.5 bg-[#232f48] rounded-lg border border-transparent focus-within:border-primary transition-colors">
+<input class="bg-transparent border-none text-white text-sm w-full p-0 focus:ring-0" placeholder="Mínimo 8 caracteres" type="password"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Confirmar Nova Senha</label>
+<div class="flex items-center gap-2 px-3 py-2.5 bg-[#232f48] rounded-lg border border-transparent focus-within:border-primary transition-colors">
+<input class="bg-transparent border-none text-white text-sm w-full p-0 focus:ring-0" placeholder="Repita a nova senha" type="password"/>
+</div>
+</div>
+<button class="w-full py-2.5 mt-2 rounded-lg border border-[#324467] text-white text-sm font-bold hover:bg-[#232f48] transition-colors">
+                                        Atualizar Senha
+                                    </button>
+</div>
+<div class="h-px bg-border-dark"></div>
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex flex-col">
+<span class="text-white text-sm font-bold">Autenticação em 2 fatores</span>
+<span class="text-text-secondary text-xs">Maior segurança para sua conta</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Notifications Card -->
+<div class="bg-card-dark rounded-2xl border border-border-dark p-6 shadow-sm flex flex-col gap-5">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+                                    Notificações
+                                </h3>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-white text-sm font-medium">Alertas de Mercado</span>
+<span class="text-text-secondary text-xs">Receba atualizações de preços</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-white text-sm font-medium">Execução de Ordens</span>
+<span class="text-text-secondary text-xs">Notificar quando uma ordem for executada</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-white text-sm font-medium">Novidades e Ofertas</span>
+<span class="text-text-secondary text-xs">Newsletter semanal da InvestPro</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action Bar -->
+<div class="sticky bottom-4 z-20 mt-4">
+<div class="bg-surface-dark border border-border-dark rounded-xl p-4 shadow-xl shadow-black/50 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-6xl mx-auto backdrop-blur-md bg-opacity-90">
+<p class="text-text-secondary text-sm hidden sm:block">Última alteração: 2 horas atrás</p>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg border border-border-dark text-white text-sm font-bold hover:bg-[#232f48] transition-colors">
+                                    Cancelar
+                                </button>
+<button class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg bg-primary text-white text-sm font-bold hover:bg-blue-600 transition-colors shadow-lg shadow-primary/25">
+                                    Salvar Alterações
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
